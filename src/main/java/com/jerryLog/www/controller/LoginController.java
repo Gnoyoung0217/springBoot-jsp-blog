@@ -1,7 +1,5 @@
 package com.jerryLog.www.controller;
 
-import java.lang.reflect.Method;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +21,8 @@ public class LoginController {
 	@PostMapping("/login")
 	public Map<String, Object> login(@RequestBody UserBean userInfo) {
 
-		System.out.println(userInfo.getEmail());
-		System.out.println(userInfo.getPassword());
+		System.out.println("Email ::: " + userInfo.getEmail());
+		System.out.println("Password ::: " + userInfo.getPassword());
 		
 		return loginSvc.login(userInfo);
 	}
@@ -32,10 +30,10 @@ public class LoginController {
 	@PostMapping("/signup")
 	public Map<String, Object> signup(@RequestBody UserBean userInfo) {
 		
-		System.out.println(userInfo.getEmail());
-		System.out.println(userInfo.getName());
-		System.out.println(userInfo.getPhoneNum());
-		System.out.println(userInfo.getPassword());
+		System.out.println("Email ::: " + userInfo.getEmail());
+		System.out.println("Name ::: " + userInfo.getName());
+		System.out.println("PhoneNum ::: " + userInfo.getPhoneNum());
+		System.out.println("Password ::: " + userInfo.getPassword());
 		
 		return loginSvc.signup(userInfo);
 		

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class HomeController {
 	
-	
 	@RequestMapping("/home")
 	public List<String> home() {
 		return Arrays.asList("Hello","Home");

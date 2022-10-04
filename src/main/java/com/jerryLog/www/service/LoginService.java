@@ -10,6 +10,11 @@ import com.jerryLog.www.bean.UserBean;
 @Service
 public class LoginService {
 	
+	/**
+	 * @method 로그인
+	 * @param userInfo
+	 * @return
+	 */
 	public Map<String, Object> login(UserBean userInfo) {
 		
 		Map<String, Object> returnMap = new HashMap<String, Object>();
@@ -20,6 +25,11 @@ public class LoginService {
 		return returnMap;
 	}
 	
+	/**
+	 * @method 회원가입
+	 * @param userInfo
+	 * @return
+	 */
 	public Map<String, Object> signup(UserBean userInfo) {
 		
 		Map<String, Object> returnMap = new HashMap<String, Object>();
