@@ -18,12 +18,15 @@ public class LoginController {
 	@Autowired
 	LoginService loginSvc;
 
+	@PostMapping("/list")
+	public Map<String, Object> list(@RequestBody UserBean userInfo) {
+		
+		return loginSvc.list(userInfo);
+	}
+	
 	@PostMapping("/login")
 	public Map<String, Object> login(@RequestBody UserBean userInfo) {
 
-		System.out.println("Email ::: " + userInfo.getEmail());
-		System.out.println("Password ::: " + userInfo.getPassword());
-		
 		return loginSvc.login(userInfo);
 	}
 	

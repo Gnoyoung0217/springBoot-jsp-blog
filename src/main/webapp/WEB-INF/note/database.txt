@@ -1,0 +1,15 @@
+CREATE TABLE MYLOG_USERS_TB (
+ user_seq INT NOT NULL AUTO_INCREMENT,
+ user_email 	NVARCHAR(200) NOT NULL,
+ user_name		NVARCHAR(50) NOT NULL,
+ user_phoneNum NVARCHAR(100) NOT NULL,
+ user_password NVARCHAR(100) NOT NULL,
+ user_secondpassword NVARCHAR(100),
+ user_region	NVARCHAR(50) NOT NULL,
+ user_creDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ user_modDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ PRIMARY KEY (user_seq, user_email));
+ 
+ INSERT INTO MYLOG_USERS_TB(user_email, user_name, user_phoneNum, user_password, user_secondpassword, user_region) VALUES('unitTest@naver.com', 'uniTest', '01011112222', '1234', '123456', 'KR');
+ UPDATE MYLOG_USERS_TB SET user_password = '1' WHERE user_seq = 1;
+ SELECT * FROM MYLOG_USERS_TB;

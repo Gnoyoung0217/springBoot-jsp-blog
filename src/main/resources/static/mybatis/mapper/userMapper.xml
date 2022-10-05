@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jerryLog.www.dao.IuserDAO">
+	<select id="getUserList" resultType="UserBean" >
+		SELECT 	USER_EMAIL AS email, 
+				USER_NAME AS name, 
+				USER_PHONENUM AS phoneNum, 
+				USER_REGION AS region
+		FROM 	MYLOG_USERS_TB
+	</select>
+	
+	<select id="getUserInfo" parameterType="UserBean" resultType="UserBean" >
+		SELECT 	USER_EMAIL AS email, 
+				USER_NAME AS name, 
+				USER_PHONENUM AS phoneNum, 
+				USER_REGION AS region
+		FROM 	MYLOG_USERS_TB
+		WHERE	USER_EMAIL = #{email}
+		AND		USER_PASSWORD = #{password}
+	</select>
+	
+	<insert id="putUserSignUp" parameterType="UserBean">
+		INSERT 	INTO MYLOG_USERS_TB(
+									 user_email, 
+									 user_name, 
+									 user_phoneNum, 
+									 user_password, 
+									 user_secondpassword, 
+									 user_region
+									) 
+				VALUES				(
+									 #{email}, 
+									 #{name}, 
+									 #{phoneNum}, 
+									 #{password}, 
+									 #{secondPassword}, 
+									 #{region}
+									);
+	</insert>
+</mapper>
