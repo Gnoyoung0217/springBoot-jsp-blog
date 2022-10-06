@@ -32,7 +32,6 @@ public class LoginService {
 		List<UserBean> userList = userDao.getUserList();
 				
 		returnMap.put("userList", userList);
-		returnMap.put("methodName", new Object() {}.getClass().getEnclosingMethod().getName());
 		returnMap.put("result", "Success");
 		
 		return returnMap;
@@ -56,7 +55,6 @@ public class LoginService {
 		} else {
 			returnMap.put("result", "Fail");
 		}
-		returnMap.put("methodName", new Object() {}.getClass().getEnclosingMethod().getName());
 		
 		return returnMap;
 	}
@@ -73,7 +71,6 @@ public class LoginService {
 		int result = userDao.putUserSignUp(userInfo);
 		
 		System.out.println(result);
-		returnMap.put("methodName", new Object() {}.getClass().getEnclosingMethod().getName());
 		returnMap.put("result", "Success");
 		
 		return returnMap;

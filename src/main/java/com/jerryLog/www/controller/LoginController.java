@@ -2,6 +2,8 @@ package com.jerryLog.www.controller;
 
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,11 +17,14 @@ import com.jerryLog.www.service.LoginService;
 @RequestMapping("/api/users")
 public class LoginController {
 	
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	LoginService loginSvc;
 
 	@PostMapping("/list")
 	public Map<String, Object> list(@RequestBody UserBean userInfo) {
+		logger.trace(this.getClass().getName()+"."+new Object() {}.getClass().getEnclosingMethod().getName());
 		
 		return loginSvc.list(userInfo);
 	}
@@ -32,6 +37,7 @@ public class LoginController {
 	
 	@PostMapping("/signup")
 	public Map<String, Object> signup(@RequestBody UserBean userInfo) {
+		logger.trace(this.getClass().getName()+"."+new Object() {}.getClass().getEnclosingMethod().getName());
 		
 		System.out.println("Email ::: " + userInfo.getEmail());
 		System.out.println("Name ::: " + userInfo.getName());
