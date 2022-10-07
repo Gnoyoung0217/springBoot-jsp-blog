@@ -12,6 +12,21 @@ public class UserBean {
 	private Timestamp creDate;
 	private Timestamp modDate;
 
+	public UserBean() {
+	}
+	
+	public UserBean(String email, String name, String password, String phoneNum, String secondPassword, String region,
+			Timestamp creDate, Timestamp modDate) {
+		this.email = email;
+		this.name = name;
+		this.password = password;
+		this.phoneNum = phoneNum;
+		this.secondPassword = secondPassword;
+		this.region = region;
+		this.creDate = creDate;
+		this.modDate = modDate;
+	}
+
 	public String getEmail() {
 		return email;
 	}
