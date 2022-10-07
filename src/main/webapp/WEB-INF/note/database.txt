@@ -16,7 +16,7 @@ CREATE TABLE MYLOG_USERS_TB (
  
  
  
- 
+ # docker Setting 값
 docker run --name mysql_volume_container -itd -v ./mysql_data:/var/lib/mysql -v ./sqls/:/docker-entrypoint-initdb.d/ ubuntu
 docker run --name mysql_db_container -e MYSQL_ROOT_PASSWORD=sleepyjoe -e MYSQL_DATABASE=myapp -d -p 3306:3306 --volumes-from=mysql_volume_container -itd --restart unless-stopped mysql
 
