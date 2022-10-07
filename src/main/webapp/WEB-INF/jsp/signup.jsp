@@ -28,6 +28,7 @@
 					<option>KR</option>
 					<option>EN</option>
 					<option>US</option>
+					<option>UK</option>
 					<option>JP</option>
 					<option>CN</option>
 				</select>
