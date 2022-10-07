@@ -47,7 +47,7 @@
 	<!-- <footer> </footer> -->
 	<script>
 		// document.querySelector(".form_div #asd").value = '${name}';
-		
+		 
 		fn_init = () => {
 			document.querySelector('#pwChk').style.visibility = 'hidden';
 		}
