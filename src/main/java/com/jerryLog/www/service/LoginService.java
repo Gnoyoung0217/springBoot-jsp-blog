@@ -4,11 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session.Cookie;
 import org.springframework.stereotype.Service;
 
 import com.jerryLog.www.bean.UserBean;
-
+import com.jerryLog.www.components.SessionManager;
 import com.jerryLog.www.dao.*;
 
 @Service
@@ -17,7 +22,10 @@ public class LoginService {
 	private Map<String, Object> returnMap;
 	
 	@Autowired
-	IuserDAO userDao;	
+	IuserDAO userDao;
+	
+	@Autowired
+	SessionManager sessionManager;
 	
 	/**
 	 * @method 유저목록 전체조회
@@ -44,13 +52,11 @@ public class LoginService {
 	 */
 	public Map<String, Object> login(UserBean userInfo) {
 		
-		returnMap = new HashMap<String, Object>();
+		returnMap = new HashMap<String, Object>();		
+		UserBean userResult= userDao.getUserInfo(userInfo);
 		
-		List<UserBean> userList = userDao.getUserInfo(userInfo);
-		
-		
-		if(userList.size() > 0) {
-			returnMap.put("userList", userList);			
+		if(userResult != null) {
+			returnMap.put("userResult", userResult);			
 			returnMap.put("result", "Success");
 		} else {
 			returnMap.put("result", "Fail");

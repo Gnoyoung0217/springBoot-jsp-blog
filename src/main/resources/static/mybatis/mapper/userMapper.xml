@@ -27,7 +27,6 @@
 									 user_name, 
 									 user_phoneNum, 
 									 user_password, 
-									 user_secondpassword, 
 									 user_region
 									) 
 				VALUES				(
@@ -35,7 +34,6 @@
 									 #{name}, 
 									 #{phoneNum}, 
 									 #{password}, 
-									 #{secondPassword}, 
 									 #{region}
 									);
 	</insert>

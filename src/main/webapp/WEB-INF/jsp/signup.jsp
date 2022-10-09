@@ -6,12 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/style.css" />
-<title>signup.jsp</title>
+<title>SignUp</title>
 
 </head>
 
 <body>
-	<!-- <header> </header> -->
+	<header> </header>
 	<main>
 		<form id="signUp_form" class="form_class" onSubmit="return false;">
 			<h1>Sign Up</h1>
@@ -38,35 +38,60 @@
 				<label>Confirm Password</label>
 				<input class="field_class" name="confirmPassword" type="password" placeholder="Insert a Password">
 
-				<p id="pwChk"></p>
+				<p id="pwChk" style="visibility: hidden"></p>
 				<br />
-				<button class="submit_class" type="submit" form="login_form" onclick="fn_signUp();">Sign Up</button>
+				<button class="submit_class" type="submit" name="signupBtn" onclick="fn_signUp();" style="background-color: grey" disabled>Sign Up</button>
 			</div>
 		</form>
 	</main>
-	<!-- <footer> </footer> -->
+	<footer> </footer>
 	<script>
 		// document.querySelector(".form_div #asd").value = '${name}';
+		const email = document.querySelector('#signUp_form [name="email"]');
+		const name = document.querySelector('#signUp_form [name="name"]');
+		const phoneNum = document.querySelector('#signUp_form [name="phoneNum"]');
+		const region = document.querySelector('#signUp_form [name="region"]');
+		const password = document.querySelector('#signUp_form [name="password"]');
+		const confirmPassword = document.querySelector('#signUp_form [name="confirmPassword"]');
+		const signupBtn = document.querySelector('#signUp_form [name="signupBtn"]');
 		 
-		fn_init = () => {
-			document.querySelector('#pwChk').style.visibility = 'hidden';
+		let eventHandlerInputChk = () => {
+			if (email.value.length > 0 
+				&& name.value.length > 0 
+				&& phoneNum.value.length > 0
+				&& region.value.length > 0
+				&& password.value.length > 0
+				&& confirmPassword.value.length > 0) {
+				
+				signupBtn.disabled = false
+				signupBtn.removeAttribute('style');
+			} else {
+				signupBtn.disabled = true
+			  	signupBtn.style.backgroundColor = 'grey';
+			}
 		}
-		fn_init();
+		
+		email.addEventListener('keyup', eventHandlerInputChk);
+		name.addEventListener('keyup', eventHandlerInputChk);
+		phoneNum.addEventListener('keyup', eventHandlerInputChk);
+		region.addEventListener('keyup', eventHandlerInputChk);
+		password.addEventListener('keyup', eventHandlerInputChk);
+		confirmPassword.addEventListener('keyup', eventHandlerInputChk);
 		
 		fn_signUp = () => {
  			const param = {
-				'email' : document.querySelector('#signUp_form [name="email"]').value,
-				'name' : document.querySelector('#signUp_form [name="name"]').value,
-				'phoneNum' : document.querySelector('#signUp_form [name="phoneNum"]').value,
-				'password' : document.querySelector('#signUp_form [name="password"]').value,
-				'region' : document.querySelector('#signUp_form [name="region"]').value,
-				'confirmPassword' : document.querySelector('#signUp_form [name="confirmPassword"]').value
+				'email' : email.value,
+				'name' : name.value,
+				'phoneNum' : phoneNum.value,
+				'password' : password.value,
+				'region' : region.value,
+				'confirmPassword' : confirmPassword.value
 			};
 						
 			if(param.password !== param.confirmPassword) {
 				document.querySelector('#pwChk').innerText = '비밀번호가 일치하지 않습니다.';
 				document.querySelector('#pwChk').style.visibility = 'visible';
-				document.querySelector('#signUp_form [name="password"]').focus();
+				password.focus();
 				return;
 			} else {
 				document.querySelector('#pwChk').style.visibility = 'hidden';
@@ -74,11 +99,22 @@
 			}
 		}
 		
+		// 비동기function
 		fn_asyncRequest = (param) => {
 			let xhr = new XMLHttpRequest();
 			xhr.onreadystatechange = () => {
 				if (xhr.readyState == 4 && xhr.status == 200) {
-					alert(xhr.responseText);
+					let data = JSON.parse(xhr.responseText);
+					
+					if (data.result == 'Success') {
+						alert('회원가입을 환영합니다.');
+						window.location.href = '/api/page/login';
+					} else if (data.result == 'Fail') {
+						alert('회원가입에 실패하였습니다.');						
+					} else {
+						alert('관리자에게 문의해주세요');
+					}
+					
 				} else {
 					console.error(xhr.responseText);
 				}
@@ -87,6 +123,7 @@
 			xhr.setRequestHeader("Content-type", "application/json");
 			xhr.send(JSON.stringify(param)); // Ajax 요청을 서버로 전달	
 		}
+	
 		
 	</script>
 </body>

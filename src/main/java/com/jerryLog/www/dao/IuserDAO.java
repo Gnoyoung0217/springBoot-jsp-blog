@@ -12,6 +12,6 @@ import com.jerryLog.www.bean.UserBean;
 public interface IuserDAO {
 	
 	public List<UserBean> getUserList();
-	public List<UserBean> getUserInfo(UserBean userInfo);
+	public UserBean getUserInfo(UserBean userInfo);
 	public int putUserSignUp(UserBean userInfo);
 }
