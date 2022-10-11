@@ -1,29 +1,65 @@
+# docker Engine Setting
+docker run --name mysql_volume_container -itd -v ./mysql_data:/var/lib/mysql -v ./sqls/:/docker-entrypoint-initdb.d/ ubuntu
+docker run --name mysql_db_container -e MYSQL_ROOT_PASSWORD=jerry12!@ -e MYSQL_DATABASE=myapp -d -p 3306:3306 --volumes-from=mysql_volume_container -itd --restart unless-stopped mysql
+docker cp ./my.cnf mysql_db_container:/etc/mysql/conf.d/my.cnf
+
+# my.cnf
+[mysqld]
+character-set-server=utf8
+
+[mysql]
+default-character-set=utf8
+
+[client]
+default-character-set=utf8
+
+# sql Tool Install & Schema
 CREATE TABLE MYLOG_USERS_TB (
  user_seq INT NOT NULL AUTO_INCREMENT,
  user_email 	NVARCHAR(200) NOT NULL,
  user_name		NVARCHAR(50) NOT NULL,
  user_phoneNum NVARCHAR(100) NOT NULL,
  user_password NVARCHAR(100) NOT NULL,
- user_secondpassword NVARCHAR(100),
  user_region	NVARCHAR(50) NOT NULL,
  user_creDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
  user_modDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
  PRIMARY KEY (user_seq, user_email));
  
- INSERT INTO MYLOG_USERS_TB(user_email, user_name, user_phoneNum, user_password, user_secondpassword, user_region) VALUES('unitTest@naver.com', 'uniTest', '01011112222', '1234', '123456', 'KR');
- UPDATE MYLOG_USERS_TB SET user_password = '1' WHERE user_seq = 1;
+ INSERT INTO MYLOG_USERS_TB(user_email, user_name, user_phoneNum, user_password, user_region) VALUES('unitTest@naver.com', 'uniTest', '01011112222', '1234', 'KR');
  SELECT * FROM MYLOG_USERS_TB;
- 
- 
- 
- # docker Setting 값
-docker run --name mysql_volume_container -itd -v ./mysql_data:/var/lib/mysql -v ./sqls/:/docker-entrypoint-initdb.d/ ubuntu
-docker run --name mysql_db_container -e MYSQL_ROOT_PASSWORD=sleepyjoe -e MYSQL_DATABASE=myapp -d -p 3306:3306 --volumes-from=mysql_volume_container -itd --restart unless-stopped mysql
 
-[Dockerfile]
+
+
+
+
+
+
+
+
+
+
+
+
+작성중...
+# docker build -t jerrry/mysql_volume -f DockerfileVol
+FROM busybox
+
+VOLUME ./mysql_data:/var/lib/mysql
+VOLUME ./sqls/:/docker-entrypoint-initdb.d/
+
+
+# docker build -t jerrry/mysql_db -f DockerfileDb
 FROM mysql:5.7
 
-ENV MYSQL_ROOT_PASSWORD: sleepyjoe
+ENV MYSQL_ROOT_PASSWORD: jerry12!@
 ENV MYSQL_DATABASE: myapp
 
 ADD ./my.cnf /etc/mysql/conf.d/my.cnf
+
+EXPOSE 3306
+
+
+
+
+
+
