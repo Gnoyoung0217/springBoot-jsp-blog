@@ -4,11 +4,14 @@
 
 <mapper namespace="com.jerryLog.www.dao.IuserDAO">
 	<select id="getUserList" resultType="UserBean" >
+		<![CDATA[
 		SELECT 	USER_EMAIL AS email, 
 				USER_NAME AS name, 
 				USER_PHONENUM AS phoneNum, 
 				USER_REGION AS region
 		FROM 	MYLOG_USERS_TB
+		WHERE	2 > 1	
+		]]>
 	</select>
 	
 	<select id="getUserInfo" parameterType="UserBean" resultType="UserBean" >

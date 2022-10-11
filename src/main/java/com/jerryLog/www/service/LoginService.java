@@ -32,7 +32,7 @@ public class LoginService {
 	 * @param userInfo
 	 * @return
 	 */
-	public Map<String, Object> list(UserBean userInfo) {
+	public Map<String, Object> list() {
 		
 		returnMap = new HashMap<String, Object>();
 		

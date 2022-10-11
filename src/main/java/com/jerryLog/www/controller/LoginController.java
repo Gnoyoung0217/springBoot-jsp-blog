@@ -24,9 +24,9 @@ public class LoginController {
 	LoginService loginSvc;
 
 	@PostMapping("/list")
-	public Map<String, Object> list(@RequestBody UserBean userInfo) {
+	public Map<String, Object> list() {
 		
-		return loginSvc.list(userInfo);
+		return loginSvc.list();
 	}
 	
 	@PostMapping("/login")
