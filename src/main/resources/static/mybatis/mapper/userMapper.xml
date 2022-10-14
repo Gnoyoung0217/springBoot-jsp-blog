@@ -40,4 +40,11 @@
 									 #{region}
 									);
 	</insert>
+	
+	<select id="getUserAuthInfo" parameterType="String" resultType="UserBean" >
+		SELECT 	USER_EMAIL AS email, 
+				USER_PASSWORD AS password 
+		FROM 	MYLOG_USERS_TB
+		WHERE	USER_EMAIL = #{email}
+	</select>
 </mapper>

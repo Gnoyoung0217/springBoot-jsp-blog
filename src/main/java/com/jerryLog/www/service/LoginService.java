@@ -66,6 +66,16 @@ public class LoginService {
 	}
 	
 	/**
+	 * @method 로그인
+	 * @param userInfo
+	 * @return forward register
+	 */
+	public UserBean loginAuth(String email) {
+		
+		return userDao.getUserAuthInfo(email);
+	}
+	
+	/**
 	 * @method 회원가입
 	 * @param userInfo
 	 * @return

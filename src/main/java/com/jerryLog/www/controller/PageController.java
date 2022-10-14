@@ -40,18 +40,8 @@ public class PageController {
 
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request, Model model) {
-		HttpSession session = request.getSession(false);
 
-		if (session == null) {
-			return "login";
-		}
-
-		UserBean userMember = (UserBean) session.getAttribute(SessionConst.LOGIN_MEMBER);
-		if (userMember == null) {
-			return "login";
-		}
-
-		return "index";
+		return "login";
 	}
 
 	@RequestMapping("/logout")
@@ -74,18 +64,18 @@ public class PageController {
 		return "signup";
 	}
 
-	@RequestMapping("/")
+	@RequestMapping({"/", "/home"})
 	public String home(HttpServletRequest request, Model model) {
-		HttpSession session = request.getSession(false);
-
-		if (session == null) {
-			return "login";
-		}
-
-		UserBean userMember = (UserBean) session.getAttribute(SessionConst.LOGIN_MEMBER);
-		if (userMember == null) {
-			return "login";
-		}
+//		HttpSession session = request.getSession(false);
+//
+//		if (session == null) {
+//			return "login";
+//		}
+//
+//		UserBean userMember = (UserBean) session.getAttribute(SessionConst.LOGIN_MEMBER);
+//		if (userMember == null) {
+//			return "login";
+//		}
 
 		return "index";
 	}

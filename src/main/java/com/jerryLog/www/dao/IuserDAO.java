@@ -14,4 +14,6 @@ public interface IuserDAO {
 	public List<UserBean> getUserList();
 	public UserBean getUserInfo(UserBean userInfo);
 	public int putUserSignUp(UserBean userInfo);
+	public UserBean getUserAuthInfo(String email);
+	
 }
