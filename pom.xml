@@ -73,22 +73,14 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<!-- Spring Security web Library -->		
+		<!-- Spring Security Starter(web,core,config) Library -->		
+
 		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-web</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-		<!-- Spring Security core Library -->		
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-core</artifactId>
-		</dependency>
-		
 		<!-- Spring Security config Library -->
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
-		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>

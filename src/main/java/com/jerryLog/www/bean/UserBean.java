@@ -2,6 +2,8 @@ package com.jerryLog.www.bean;
 
 import java.sql.Timestamp;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 public class UserBean {
 	private String email;
 	private String name;
@@ -89,6 +91,21 @@ public class UserBean {
 
 	public void setModDate(Timestamp modDate) {
 		this.modDate = modDate;
+	}
+	
+	/**
+	 * 비밀번호 암호화
+	 * @param passwordEncoder
+	 * @return
+	 */
+	public UserBean hashPassword(PasswordEncoder passwordEncoder) {
+		this.password = passwordEncoder.encode(this.password);
+		return this;
+	}
+	
+	public boolean checkPassword(String plainPassword, PasswordEncoder passwordEncoder) {
+		return passwordEncoder.matches(plainPassword, this.password);
+		
 	}
 
 }

@@ -17,13 +17,13 @@
 			<h1>Sign Up</h1>
 			<br /> <br />
 			<div class="form_div">
-				<label>Email</label>
+				<label>Email(계정)</label>
 				<input class="field_class" name="email" type="email" placeholder="Insert Email Address" autofocus />
-				<label>Name</label>
+				<label>Name(이름)</label>
 				<input class="field_class" name="name" type="text" placeholder="Insert Name" />
-				<label>PhoneNum</label>
+				<label>PhoneNum(전화번호)</label>
 				<input class="field_class" name="phoneNum" type="text" placeholder="Insert PhoneNumber" />
-				<label>Region</label>
+				<label>Region(국가)</label>
 				<select class="field_class" name="region">
 					<option>KR</option>
 					<option>EN</option>
@@ -33,14 +33,15 @@
 					<option>CN</option>
 				</select>
 
-				<label>Password</label>
+				<label>Password(비밀번호)</label>
 				<input class="field_class" name="password" type="password" placeholder="Insert a Password">
-				<label>Confirm Password</label>
+				<label>Confirm Password(비밀번호 확인)</label>
 				<input class="field_class" name="confirmPassword" type="password" placeholder="Insert a Password">
 
 				<p id="pwChk" style="visibility: hidden"></p>
 				<br />
-				<button class="submit_class" type="submit" name="signupBtn" onclick="fn_signUp();" style="background-color: grey" disabled>Sign Up</button>
+				<input class="submit_class" type="button" name="cancleBtn" onclick="history.back()" style="display: inline-block;"value="BACK">
+				<button class="submit_class" type="submit" name="signupBtn" onclick="fn_signUp();" style="display: inline-block; background-color: grey" disabled>Sign Up</button>
 			</div>
 		</form>
 	</main>
@@ -64,7 +65,8 @@
 				&& confirmPassword.value.length > 0) {
 				
 				signupBtn.disabled = false
-				signupBtn.removeAttribute('style');
+				//signupBtn.removeAttribute('style');
+			  	signupBtn.style.backgroundColor = '#FFE6D4';
 			} else {
 				signupBtn.disabled = true
 			  	signupBtn.style.backgroundColor = 'grey';
@@ -110,7 +112,7 @@
 						alert('회원가입을 환영합니다.');
 						window.location.href = '/api/page/login';
 					} else if (data.result == 'Fail') {
-						alert('회원가입에 실패하였습니다.');						
+						alert('회원가입에 실패하였습니다.\n' + data.message);
 					} else {
 						alert('관리자에게 문의해주세요');
 					}

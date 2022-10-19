@@ -1,4 +1,4 @@
-package com.jerryLog.www.service;
+package com.jerryLog.www.security;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.jerryLog.www.bean.UserBean;
+import com.jerryLog.www.service.LoginService;
 
 
 @Service
@@ -28,8 +29,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 		UserBean userBean = new UserBean();
 		userBean.setEmail(email);
-		
-		System.out.println("email ::::::::::::::" + email);
 		
 		userBean = loginSvc.loginAuth(email);
 		
