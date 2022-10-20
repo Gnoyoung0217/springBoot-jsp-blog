@@ -1,20 +1,23 @@
 package com.jerryLog.www.controller;
 
-import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.jerryLog.www.SessionConst;
-import com.jerryLog.www.bean.UserBean;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping("/api/page")
@@ -39,7 +42,28 @@ public class PageController {
 //	}
 
 	@RequestMapping("/login")
-	public String login(HttpServletRequest request, Model model) {
+	public String login(HttpServletRequest request, Model model,Authentication authentication) {
+		HttpSession session = request.getSession();
+		System.out.println("페이지에서 받은 세션 값 :: " + session.getAttribute("userEmailSession"));
+		
+		if (authentication != null) {
+			UserDetails userDetail = (UserDetails) authentication.getPrincipal();
+			System.out.println("Security가 가지고 있는 세션 값 :: " + userDetail.getUsername());
+
+			// object
+			ObjectMapper objMapper = new ObjectMapper();
+			Map<String, Object> map = objMapper.convertValue(authentication.getDetails(), Map.class);
+			System.out.println("Security가 가지고 있는 세션 ID :: " + map.get("sessionId")); // authentication의 세션 아이디
+
+			// authentication의 권한
+			Iterator<? extends GrantedAuthority> iter = userDetail.getAuthorities().iterator();
+			if (iter.hasNext()) {
+				if (iter.next().toString().equals("USER")) {
+					System.out.println("authority :: USER");
+					return "redirect:/";
+				}
+			}
+		}
 
 		return "login";
 	}
@@ -66,16 +90,6 @@ public class PageController {
 
 	@RequestMapping({"/", "/home"})
 	public String home(HttpServletRequest request, Model model) {
-//		HttpSession session = request.getSession(false);
-//
-//		if (session == null) {
-//			return "login";
-//		}
-//
-//		UserBean userMember = (UserBean) session.getAttribute(SessionConst.LOGIN_MEMBER);
-//		if (userMember == null) {
-//			return "login";
-//		}
 
 		return "index";
 	}

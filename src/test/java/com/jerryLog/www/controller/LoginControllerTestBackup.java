@@ -19,7 +19,7 @@
 //import org.springframework.web.context.WebApplicationContext;
 //
 //import com.fasterxml.jackson.databind.ObjectMapper;
-//import com.jerryLog.www.bean.UserBean;
+//import com.jerryLog.www.Model.UserBean;
 //import com.jerryLog.www.controller.LoginController;
 //import com.jerryLog.www.service.LoginService;
 //

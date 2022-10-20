@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import com.jerryLog.www.bean.UserBean;
+import com.jerryLog.www.Model.UserBean;
 
 @Repository
 @Mapper

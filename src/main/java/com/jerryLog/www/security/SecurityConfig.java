@@ -61,9 +61,10 @@ public class SecurityConfig {
 			http
 					.csrf().disable()						// Cross Site Script Forgery
 						.authorizeRequests()				// 요청에 의한 보안검사 시작
-						.antMatchers("/api/page/login").permitAll()
-						.antMatchers("/api/page/signup").permitAll()
-						.antMatchers("/api/users/signup").permitAll()
+						.antMatchers("/api/page/login").permitAll() 	// 로그인 페이지
+						.antMatchers("/api/page/signup").permitAll()	// 회원가입 페이지
+						.antMatchers("/api/users/signup").permitAll()	// 회원가입 처리
+						.antMatchers("/api/admin/home").hasAnyRole("ADMIN")	// 관리자 회원
 						.antMatchers("/api/page/home").hasAnyAuthority("USER")
 						.anyRequest().authenticated() 		// 위 외 어떠한 요청에도 보안검사를 한다.
 					.and()
@@ -74,7 +75,7 @@ public class SecurityConfig {
 						.usernameParameter("email")
 						.passwordParameter("password")
 						// 로그인 성공 후 핸들러
-						//.successHandler(new AuthenticationSuccessHandlerImpl())
+						.successHandler(new AuthenticationSuccessHandlerImpl())
 						//로그인 실패 핸들러
 						.failureHandler(new AuthenticationFailureHandlerImpl())//로그인 실패 후 핸들러
 						.permitAll()
@@ -119,6 +120,9 @@ public class SecurityConfig {
 											Authentication authentication) throws IOException, ServletException {
 			
 			System.out.println("authentication:: " + authentication.getName());
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("userEmailSession", authentication.getName());
 			response.sendRedirect("/");
 		}
 		

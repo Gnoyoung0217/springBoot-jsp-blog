@@ -7,6 +7,6 @@
     </settings>
     
     <typeAliases>
-    	<typeAlias type="com.jerryLog.www.bean.UserBean" alias="UserBean"/>
+    	<typeAlias type="com.jerryLog.www.Model.UserBean" alias="UserBean"/>
     </typeAliases>
 </configuration>

@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.jerryLog.www.bean.UserBean;
+import com.jerryLog.www.Model.UserBean;
 import com.jerryLog.www.service.LoginService;
 
 

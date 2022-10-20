@@ -24,7 +24,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jerryLog.www.bean.UserBean;
+import com.jerryLog.www.Model.UserBean;
 
 // 참조 경로 >> https://astrid-dm.tistory.com/536
 // @SpringBootTest
